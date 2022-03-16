@@ -1,19 +1,15 @@
-
-CREATE TABLE `t_level` (
-       id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
-       `level` VARCHAR(64) NOT NULL COMMENT "會員等級",
-       discount DECIMAL(10,2) NOT NULL COMMENT "折扣"
-) COMMENT "會員等級表";
-
-CREATE TABLE `t_customer` (
-       id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
-       username VARCHAR(256) NOT NULL COMMENT "會員帳號",
-       `password` VARCHAR(512) NOT NULL COMMENT "會員密碼",
-       `line` VARCHAR(256) COMMENT "line 帳號",
-       tel CHAR(10) COMMENT "手機",
-       `level_id` INT UNSIGNED COMMENT "會員等級",
-       `create_time` TIMESTAMP NOT NULL DEFAULT NOW() COMMENT "新增時間",
-       `last_update_time` TIMESTAMP NOT NULL DEFAULT NOW() COMMENT "最後修改時間",
-       INDEX idx_username(username),
-       UNIQUE unique_username(username)
+CREATE TABLE `t_user` (
+      id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+      username VARCHAR(256) NOT NULL COMMENT "用戶名",
+      `password` VARCHAR(256) NOT NULL COMMENT "密碼",
+      emp_id INT UNSIGNED NOT NULL COMMENT "員工ID",
+      role_id INT UNSIGNED NOT NULL COMMENT "角色ID",
+      `status` TINYINT UNSIGNED NOT NULL COMMENT "1:可用 2不可用",
+      `create_time` TIMESTAMP NOT NULL DEFAULT NOW(),
+      `last_update_time` TIMESTAMP NOT NULL DEFAULT NOW() COMMENT "最後修改時間",
+      UNIQUE unique_username(username),
+      INDEX idx_username(username),
+      INDEX idx_emp_id(emp_id),
+      INDEX idx_role_id(role_id),
+      INDEX idx_status(`status`)
 ) COMMENT "用戶表";
