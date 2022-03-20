@@ -1,0 +1,10 @@
+
+port: 8080
+
+mysql:
+  port: 33060
+  username: root
+  password: secret
+  name: shop
+  host: "127.0.0.1"
+  

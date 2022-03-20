@@ -29,7 +29,7 @@ CREATE TABLE `t_productin` (
       INDEX idx_supplier_id (supplier_id),
       INDEX idx_payment_type (payment_type),
       INDEX idx_create_time (create_time)
-)COMMENT "入庫表"
+)COMMENT "入庫表";
 
 
 CREATE TABLE `t_purchase_productin` (

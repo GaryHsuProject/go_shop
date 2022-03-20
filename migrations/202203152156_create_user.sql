@@ -13,3 +13,5 @@ CREATE TABLE `t_user` (
       INDEX idx_role_id(role_id),
       INDEX idx_status(`status`)
 ) COMMENT "用戶表";
+
+ALTER TABLE `t_user` DROP COLUMN `emp_id`;
