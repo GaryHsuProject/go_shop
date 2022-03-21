@@ -1,0 +1,123 @@
+kind: pipeline
+name: Build for production
+type: docker
+
+services:
+- name: db
+  image: mysql
+  environment:
+    MYSQL_USER: root
+    MYSQL_PASSWORD: secret
+    MYSQL_ROOT_PASSWORD: secret
+    MYSQL_DATABASE: shop
+
+# - name: redis
+#   image: redis:alpine
+
+steps:
+# - name: Run Test
+#   image: node:latest
+#   depends_on:
+#     - db
+#     - redis
+#   commands:
+#     - echo "start running test..."
+#     - bash ./build.sh
+
+- name: Deploy
+  image: appleboy/drone-ssh
+  depends_on:
+    - db
+    # - redis
+  settings:
+    host: 
+      from_secret: host 
+    username: 
+      from_secret: user 
+    password: 
+      from_secret: password 
+    port: 22
+    script:
+      - cd && git pull
+      - make 
+
+- name: slack
+  image: plugins/slack
+  depends_on:
+      # - Run Test
+      - Deploy
+  settings:
+    webhook:
+      from_secret: slack_webhook
+    channel: go_shop
+  when:
+    status: [ success, failure ]
+
+trigger:
+  branch: 
+    - main
+  event: 
+    - pull_request
+---
+
+kind: pipeline
+type: docker
+name: drone-CICD for dev
+
+services:
+- name: db
+  image: mysql
+  environment:
+    MYSQL_USER: root
+    MYSQL_PASSWORD: secret
+    MYSQL_ROOT_PASSWORD: secret
+    MYSQL_DATABASE: shop
+    
+# - name: redis
+#   image: redis:alpine
+
+steps:
+# - name: Run Test
+#   image: node:latest
+#   depends_on:
+#     - db
+#     - redis
+#   commands:
+#     - echo "start running test..."
+#     - bash ./build.sh
+
+- name: Deploy
+  image: appleboy/drone-ssh
+  depends_on:
+    - db
+    # - redis
+  settings:
+    host: 
+      from_secret: host 
+    username: 
+      from_secret: user 
+    password: 
+      from_secret: password 
+    port: 22
+    script:
+      - cd && git pull
+      - make
+
+
+- name: slack
+  image: plugins/slack
+  depends_on:
+      # - Run Test
+      - Deploy 
+  settings:
+    webhook:
+      from_secret: slack_webhook
+    channel: go_shop
+  when:
+    status: [ success, failure ]
+
+trigger:
+  branch: 
+    - dev
+  event: 
+    - push  
