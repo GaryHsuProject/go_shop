@@ -38,7 +38,7 @@ steps:
       from_secret: password 
     port: 22
     script:
-      - cd /home/prd/go_shop && git pull
+      - cd /home/hsipl/prd/go_shop && git pull
       - docker-compose build --no-cache 
       - docker-compose up -d
 
@@ -101,7 +101,7 @@ steps:
       from_secret: password 
     port: 22
     script:
-      - cd /home/dev/go_shop && git pull
+      - cd /home/hsipl/dev/go_shop && git pull
       - docker-compose build --no-cache 
       - docker-compose up -d
 
