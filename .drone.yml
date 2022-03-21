@@ -39,7 +39,8 @@ steps:
     port: 22
     script:
       - cd go_shop && git pull
-      - make 
+      - docker-compose build --no-cache 
+      - docker-compose up -d
 
 - name: slack
   image: plugins/slack
@@ -101,7 +102,8 @@ steps:
     port: 22
     script:
       - cd go_shop && git pull
-      - make
+      - docker-compose build --no-cache 
+      - docker-compose up -d
 
 
 - name: slack
