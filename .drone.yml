@@ -38,7 +38,7 @@ steps:
       from_secret: password 
     port: 22
     script:
-      - cd && git pull
+      - cd go_shop && git pull
       - make 
 
 - name: slack
@@ -100,7 +100,7 @@ steps:
       from_secret: password 
     port: 22
     script:
-      - cd && git pull
+      - cd go_shop && git pull
       - make
 
 
