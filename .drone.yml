@@ -38,7 +38,7 @@ steps:
       from_secret: password 
     port: 22
     script:
-      - cd go_shop && git pull
+      - cd /home/prd/go_shop && git pull
       - docker-compose build --no-cache 
       - docker-compose up -d
 
@@ -63,7 +63,7 @@ trigger:
 
 kind: pipeline
 type: docker
-name: drone-CICD for dev
+name: Build for dev
 
 services:
 - name: db
@@ -101,7 +101,7 @@ steps:
       from_secret: password 
     port: 22
     script:
-      - cd go_shop && git pull
+      - cd /home/dev/go_shop && git pull
       - docker-compose build --no-cache 
       - docker-compose up -d
 
