@@ -1,4 +1,4 @@
-
+-- +migrate Up
 CREATE TABLE `t_customer_address` (
        id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
        customer_id INT UNSIGNED NOT NULL COMMENT "用戶ID",
@@ -8,3 +8,6 @@ CREATE TABLE `t_customer_address` (
        prime BOOLEAN NOT NULL COMMENT "是否為默認地址",
        INDEX idx_customer_id(customer_id)
 ) COMMENT "用戶收貨地址表";
+
+-- +migrate Down
+DROP TABLE `t_customer_address`;

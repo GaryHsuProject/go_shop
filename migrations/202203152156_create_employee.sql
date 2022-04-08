@@ -1,3 +1,4 @@
+-- +migrate Up
 CREATE TABLE `t_employee` (
       id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
       wid VARCHAR(32) NOT NULL COMMENT "工號",
@@ -21,3 +22,6 @@ CREATE TABLE `t_employee` (
       INDEX idx_wid(wid),
       UNIQUE unq_wid(wid)
 ) COMMENT "員工表";
+
+-- +migrate Down
+DROP TABLE `t_employee`;

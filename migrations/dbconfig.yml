@@ -1,0 +1,5 @@
+localhost:
+  dialect: mysql
+  datasource: root:secret@tcp(127.0.0.1:33060)/shop?parseTime=true
+  dir: migrations
+  table: migrations

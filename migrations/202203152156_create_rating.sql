@@ -1,3 +1,4 @@
+-- +migrate Up
 CREATE TABLE `t_rating` (
       id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
       order_id INT UNSIGNED NOT NULL,
@@ -10,3 +11,6 @@ CREATE TABLE `t_rating` (
       INDEX idx_sku_id (sku_id),
       INDEX idx_create_time (create_time)
 ) COMMENT "評價表";
+
+-- +migrate Down
+DROP TABLE `t_rating`;

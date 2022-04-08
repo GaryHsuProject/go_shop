@@ -1,4 +1,4 @@
-
+-- +migrate Up
 CREATE TABLE `t_province` (
        id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
        province VARCHAR(64) NOT NULL COMMENT "省份",
@@ -10,3 +10,7 @@ CREATE TABLE `t_city` (
        city VARCHAR(64) NOT NULL COMMENT "城市",
        province_id INT UNSIGNED NOT NULL COMMENT "省份ID"
 ) COMMENT "城市表";
+
+-- +migrate Down
+DROP TABLE `t_province`;
+DROP TABLE `t_city`;

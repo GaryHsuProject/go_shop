@@ -1,4 +1,4 @@
-
+-- +migrate Up
 CREATE TABLE `t_spu` (
        id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
        title VARCHAR(256) NOT NULL COMMENT "標題",
@@ -15,4 +15,7 @@ CREATE TABLE `t_spu` (
        INDEX idx_spg_id (spg_id),
        INDEX idx_saleable (saleable),
        INDEX idx_valid (valid)
-) COMMENT "產品表"
+) COMMENT "產品表";
+
+-- +migrate Down
+DROP TABLE `t_spu`;

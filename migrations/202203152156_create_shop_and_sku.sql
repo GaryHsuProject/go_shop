@@ -1,4 +1,4 @@
-
+-- +migrate Up
 CREATE TABLE `t_shop` (
        id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
        city_id INT UNSIGNED NOT NULL COMMENT "城市ID",
@@ -14,3 +14,7 @@ CREATE TABLE `t_shop_sku` (
        unit VARCHAR(16) NOT NULL COMMENT "庫存單位",
        PRIMARY KEY (shop_id,sku_id)
 ) COMMENT "商店商品庫存表";
+
+-- +migrate Down
+DROP TABLE `t_shop`;
+DROP TABLE `t_shop_sku`;

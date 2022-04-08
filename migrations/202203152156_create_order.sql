@@ -1,3 +1,4 @@
+-- +migrate Up
 CREATE TABLE `t_order` (
        id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
        `code` VARCHAR(256) NOT NULL COMMENT "流水號",
@@ -19,3 +20,6 @@ CREATE TABLE `t_order` (
        INDEX idx_shop_id(shop_id),
        UNIQUE unique_code (code)       
 ) COMMENT "訂單表";
+
+-- +migrate Down
+DROP TABLE `t_order`;

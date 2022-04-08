@@ -1,3 +1,4 @@
+-- +migrate Up
 CREATE TABLE `t_delivery` (
       id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
       order_id INT UNSIGNED NOT NULL COMMENT "訂單編號",
@@ -18,3 +19,6 @@ CREATE TABLE `t_delivery` (
       INDEX idx_address_id (address_id),
       INDEX idx_ecp(ecp)
 ) COMMENT "快遞表";
+
+-- +migrate Down
+DROP TABLE `t_delivery`;

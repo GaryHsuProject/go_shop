@@ -1,4 +1,4 @@
-
+-- +migrate Up
 CREATE TABLE `t_brand` (
        id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
        `name` VARCHAR(256) NOT NULL COMMENT "品牌名稱",
@@ -6,4 +6,7 @@ CREATE TABLE `t_brand` (
        `letter` CHAR(1) NOT NULL COMMENT "品牌首字母",
        UNIQUE KEY unique_name (`name`),
        INDEX idx_letter(`letter`)
-) COMMENT "品牌表"
+) COMMENT "品牌表";
+
+-- +migrate Down
+DROP TABLE `t_brand`;

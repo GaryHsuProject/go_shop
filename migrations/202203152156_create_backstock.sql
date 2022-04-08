@@ -1,3 +1,4 @@
+-- +migrate Up
 CREATE TABLE `t_backstock` (
       id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
       order_id INT UNSIGNED NOT NULL COMMENT "訂單編號",
@@ -11,3 +12,6 @@ CREATE TABLE `t_backstock` (
       INDEX idx_qa_id (qa_id),
       INDEX idx_status(`status`)
 ) COMMENT "退貨表";
+
+-- +migrate Down
+DROP TABLE `t_backstock`;

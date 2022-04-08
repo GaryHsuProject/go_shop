@@ -1,3 +1,4 @@
+-- +migrate Up
 CREATE TABLE `t_user` (
       id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
       username VARCHAR(256) NOT NULL COMMENT "用戶名",
@@ -14,4 +15,5 @@ CREATE TABLE `t_user` (
       INDEX idx_status(`status`)
 ) COMMENT "用戶表";
 
-ALTER TABLE `t_user` DROP COLUMN `emp_id`;
+-- +migrate Down
+DROP TABLE `t_user`;
