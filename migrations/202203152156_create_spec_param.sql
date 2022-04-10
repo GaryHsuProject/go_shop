@@ -1,4 +1,4 @@
-
+-- +migrate Up
 CREATE TABLE `t_spec_param` (
        id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
        spg_id INT UNSIGNED NOT NULL COMMENT "品類編號",
@@ -11,4 +11,7 @@ CREATE TABLE `t_spec_param` (
        segements VARCHAR(256) COMMENT "參數值",
        INDEX idx_spg_id(`spg_id`),
        INDEX idx_spp_id(`spp_id`)
-) COMMENT "參數表"
+) COMMENT "參數表";
+
+-- +migrate Down
+DROP TABLE `t_spec_param`;

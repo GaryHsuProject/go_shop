@@ -1,4 +1,4 @@
-
+-- +migrate Up
 CREATE TABLE `t_level` (
        id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
        `level` VARCHAR(64) NOT NULL COMMENT "會員等級",
@@ -17,3 +17,7 @@ CREATE TABLE `t_customer` (
        INDEX idx_username(username),
        UNIQUE unique_username(username)
 ) COMMENT "顧客表";
+
+-- +migrate Down
+DROP TABLE `t_level`;
+DROP TABLE `t_customer`;

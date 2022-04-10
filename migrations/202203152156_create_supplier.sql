@@ -1,3 +1,4 @@
+-- +migrate Up
 CREATE TABLE `t_supplier` (
       id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
       `code` VARCHAR(256) NOT NULL COMMENT "供應商編號",
@@ -19,4 +20,8 @@ CREATE TABLE `t_supplier_sku` (
       supplier_id INT UNSIGNED NOT NULL,
       sku_id INT UNSIGNED NOT NULL,
       PRIMARY KEY (supplier_id,sku_id) 
-)COMMENT "供應商商品表"
+)COMMENT "供應商商品表";
+
+-- +migrate Down
+DROP TABLE `t_supplier`;
+DROP TABLE `t_supplier_sku`;

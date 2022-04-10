@@ -1,3 +1,4 @@
+-- +migrate Up
 CREATE TABLE `t_order_detail` (
        order_id INT UNSIGNED COMMENT "訂單ID",
        sku_id INT UNSIGNED COMMENT "sku ID",
@@ -6,3 +7,6 @@ CREATE TABLE `t_order_detail` (
        Num INT UNSIGNED COMMENT "數量",
        PRIMARY KEY (order_id,sku_id)
 ) COMMENT "訂單詳情表";
+
+-- +migrate Down
+DROP TABLE `t_order_detail`;

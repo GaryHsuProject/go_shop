@@ -1,3 +1,4 @@
+-- +migrate Up
 CREATE TABLE `t_purchase` (
       id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
       sku_id INT UNSIGNED NOT NULL,
@@ -36,4 +37,9 @@ CREATE TABLE `t_purchase_productin` (
       productin_id INT UNSIGNED NOT NULL,
       purchase_id INT UNSIGNED NOT NULL,
       PRIMARY KEY (productin_id,purchase_id)
-) COMMENT "採購入庫表"
+) COMMENT "採購入庫表";
+
+-- +migrate Down
+DROP TABLE `t_purchase`;
+DROP TABLE `t_productin`;
+DROP TABLE `t_purchase_productin`;

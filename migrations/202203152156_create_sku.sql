@@ -1,4 +1,4 @@
-
+-- +migrate Up
 CREATE TABLE `t_sku` (
        id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
        spu_id INT UNSIGNED NOT NULL COMMENT "產品ID",
@@ -13,4 +13,7 @@ CREATE TABLE `t_sku` (
        INDEX idx_spu_id (spu_id),
        INDEX idx_saleable (saleable),
        INDEX idx_valid (valid)
-) COMMENT "商品表"
+) COMMENT "商品表";
+
+-- +migrate Down
+DROP TABLE `t_sku`;
